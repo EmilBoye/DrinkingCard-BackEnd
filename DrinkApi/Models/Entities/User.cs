@@ -26,6 +26,6 @@ namespace DrinkApi.Models.Entities
         [StringLength(20, ErrorMessage = "Maximum 20 Chars")]
         public string passwordHash { get; set; }
         public bool Visible { get; set; }
-        public List<User> user { get; set; }
+        //public List<User> user { get; set; }
     }
 }

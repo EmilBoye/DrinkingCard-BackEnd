@@ -9,8 +9,8 @@ namespace DrinkApi.Data
         { }
 
 
-        DbSet<Alcohol> Alcohols { get; set; }
-        DbSet<NonAlcohol> NonAlcohols { get; set; }
-        DbSet<User> Users { get; set; }
+        public DbSet<Alcohol> Alcohols { get; set; }
+        public DbSet<NonAlcohol> NonAlcohols { get; set; }
+        public DbSet<User> Users { get; set; }
     }
 }
