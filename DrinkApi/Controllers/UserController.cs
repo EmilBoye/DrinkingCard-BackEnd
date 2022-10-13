@@ -32,7 +32,7 @@ namespace DrinkApi.Controllers
         [HttpGet]
         [Route("{id:guid}")]
         [ActionName("GetUserById")]
-        public async Task<IActionResult> GetUserById([FromRoute] Guid id)
+        public async Task<IActionResult> GetUserById([FromRoute] int id)
         {
             var user = await databaseContext.Users.FirstOrDefaultAsync(x => x.UserId == id);
             if (user != null)
@@ -42,32 +42,24 @@ namespace DrinkApi.Controllers
             return NotFound("User was not found");
         }
 
-        //Get a user with Email
-        [HttpGet("useremail")]
-        public async Task<IActionResult> GetUserByEmail(string useremail)
+        // Update
+
+
+        // Create
+
+        // Delete a post
+        [HttpDelete]
+        public async Task<IActionResult> DeleteUser([FromRoute] int id)
         {
-            var user = await databaseContext.Users.FirstOrDefaultAsync(x => x.userEmail == useremail);
-            if (user == null)
+            var existingUser = await databaseContext.Users.FindAsync(id);
+            if (existingUser != null)
             {
-                return NotFound("Email not found...");
+                databaseContext.Remove(existingUser);
+                await databaseContext.SaveChangesAsync();
+                return Ok(existingUser);
             }
-            return Ok(user);
+            return NotFound("User not found");
         }
-
-        //[HttpGet("useremail")]
-        //public IEnumerable<User> GetUsersByEmail(string useremail)
-        //{
-        //    List<User> userList = databaseContext.Users.ToList();
-        //    var userByEmail = userList.Where(user => user.userEmail == useremail);
-        //    return userByEmail;
-        //}
-
-        //[HttpGet]
-        //public IEnumerable<User> GetUsers()
-        //{
-        //    List<User> userList = databaseContext.Users.ToList();
-        //    return userList;
-        //}
 
         //public IActionResult Index()
         //{

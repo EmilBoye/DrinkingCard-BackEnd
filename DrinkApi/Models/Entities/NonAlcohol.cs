@@ -10,9 +10,12 @@ namespace DrinkApi.Models.Entities
     {
         [Key]
         public int NonAlcoId { get; set; }
+        public string Author { get; set; }
         public string Title { get; set; }
-        public string Strength { get; set; }
         public string Ingredients { get; set; }
         public string NonAlcoholType { get; set; }
+        public bool Visible { get; set; }
+        public DateTime PublishDate { get; set; }
+        public DateTime UpdatedDate { get; set; }
     }
 }
