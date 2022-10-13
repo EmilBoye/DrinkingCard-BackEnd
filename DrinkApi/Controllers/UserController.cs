@@ -41,10 +41,13 @@ namespace DrinkApi.Controllers
             return NotFound("User was not found");
         }
 
-        // Update
-
-
         // Create
+        // POST api/<Test>
+        
+        
+        // Update
+        // PUT api/<Test>/5
+
 
         // Delete a post
         [HttpDelete]
