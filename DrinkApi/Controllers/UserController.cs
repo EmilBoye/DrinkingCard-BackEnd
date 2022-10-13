@@ -20,17 +20,16 @@ namespace DrinkApi.Controllers
             databaseContext = databaseContextObj;
         }
 
-        // GET: api/<UserController>
+        // GET: api/users
         [HttpGet]
-        public async Task<IActionResult> GetAllUsers()
+        public async Task<ActionResult<IEnumerable<User>>> GetAllUsers()
         {
-            var user = await databaseContext.Users.ToListAsync();
-            return Ok(user);
+            return await databaseContext.Users.ToListAsync();
         }
 
-        // Get a single User
+        // GET: api/user/5
         [HttpGet]
-        [Route("{id:guid}")]
+        [Route("{id:id}")]
         [ActionName("GetUserById")]
         public async Task<IActionResult> GetUserById([FromRoute] int id)
         {
@@ -49,18 +48,26 @@ namespace DrinkApi.Controllers
 
         // Delete a post
         [HttpDelete]
+        [Route("{id:guid}")]
         public async Task<IActionResult> DeleteUser([FromRoute] int id)
         {
+
             var existingUser = await databaseContext.Users.FindAsync(id);
-            if (existingUser != null)
+
+            if (existingUser == null)
             {
-                databaseContext.Remove(existingUser);
-                await databaseContext.SaveChangesAsync();
-                return Ok(existingUser);
+                return BadRequest("User not found");
             }
-            return NotFound("User not found");
+            databaseContext.Users.Remove(existingUser);
+            await databaseContext.SaveChangesAsync();
+            return Ok(existingUser);
+            
         }
 
+        private bool UserExists(int id)
+        {
+            return databaseContext.Users.Any(x => x.UserId == id);
+        }
         //public IActionResult Index()
         //{
         //    return View();
