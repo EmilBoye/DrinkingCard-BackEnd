@@ -28,9 +28,7 @@ namespace DrinkApi.Controllers
         }
 
         // GET: api/user/5
-        [HttpGet]
-        [Route("{id:id}")]
-        [ActionName("GetUserById")]
+        [HttpGet("{id}")]
         public async Task<IActionResult> GetUserById([FromRoute] int id)
         {
             var user = await databaseContext.Users.FirstOrDefaultAsync(x => x.UserId == id);
@@ -41,10 +39,26 @@ namespace DrinkApi.Controllers
             return NotFound("User was not found");
         }
 
+        // GET: api/user/Emil
+        [HttpGet("username")]
+        public async Task<IActionResult> GetUserByName([FromRoute] string username)
+        {
+            List<User> userList = await databaseContext.Users.ToListAsync();
+            var userByName = userList.Where(user => user.userName == username);
+
+            return Ok(userByName);
+        }
+
         // Create
         // POST api/<Test>
+        //[HttpPost]
+        //public async Task<IActionResult<User>> PostUser(User user) 
+        //{
+            
+        //}
         
-        
+
+
         // Update
         // PUT api/<Test>/5
 
