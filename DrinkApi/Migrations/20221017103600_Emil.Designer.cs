@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DrinkApi.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20221013125601_Emil")]
+    [Migration("20221017103600_Emil")]
     partial class Emil
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

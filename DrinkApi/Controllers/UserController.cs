@@ -14,24 +14,24 @@ namespace DrinkApi.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private readonly DatabaseContext databaseContext;
+        private readonly DatabaseContext _context;
         public UserController(DatabaseContext databaseContextObj)
         {
-            databaseContext = databaseContextObj;
+            _context = databaseContextObj;
         }
 
-        // GET: api/users
+        // GET: api/User
         [HttpGet]
         public async Task<ActionResult<IEnumerable<User>>> GetAllUsers()
         {
-            return await databaseContext.Users.ToListAsync();
+            return await _context.Users.ToListAsync();
         }
 
-        // GET: api/user/5
+        // GET: api/User/5
         [HttpGet("{id}")]
         public async Task<IActionResult> GetUserById([FromRoute] int id)
         {
-            var user = await databaseContext.Users.FirstOrDefaultAsync(x => x.UserId == id);
+            var user = await _context.Users.FindAsync(id);
             if (user != null)
             {
                 return Ok(user);
@@ -39,51 +39,61 @@ namespace DrinkApi.Controllers
             return NotFound("User was not found");
         }
 
-        // GET: api/user/Emil
-        [HttpGet("username")]
-        public async Task<IActionResult> GetUserByName([FromRoute] string username)
+        // Create
+        // POST api/User
+        [HttpPost]
+        public async Task<ActionResult<User>> PostUser(User user)
         {
-            List<User> userList = await databaseContext.Users.ToListAsync();
-            var userByName = userList.Where(user => user.userName == username);
-
-            return Ok(userByName);
+            _context.Users.Add(user);
+            await _context.SaveChangesAsync();
+            return user;
         }
 
-        // Create
-        // POST api/<Test>
-        //[HttpPost]
-        //public async Task<IActionResult<User>> PostUser(User user) 
-        //{
-            
-        //}
-        
-
-
         // Update
-        // PUT api/<Test>/5
-
+        // PUT api/User/5
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateUser(int id, User user)
+        {
+            if (id != user.UserId)
+            {
+                return BadRequest();
+            }
+            
+            _context.Entry(user).State = EntityState.Modified;
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!UserExists(id))
+                    return NotFound();
+                else
+                    throw;
+            }
+            return NoContent();
+        }
 
         // Delete a post
+        // DELETE api/User/5
         [HttpDelete]
-        [Route("{id:guid}")]
+        [Route("{id}")]
         public async Task<IActionResult> DeleteUser([FromRoute] int id)
         {
-
-            var existingUser = await databaseContext.Users.FindAsync(id);
+            var existingUser = await _context.Users.FindAsync(id);
 
             if (existingUser == null)
             {
                 return BadRequest("User not found");
             }
-            databaseContext.Users.Remove(existingUser);
-            await databaseContext.SaveChangesAsync();
+            _context.Users.Remove(existingUser);
+            await _context.SaveChangesAsync();
             return Ok(existingUser);
-            
         }
 
         private bool UserExists(int id)
         {
-            return databaseContext.Users.Any(x => x.UserId == id);
+            return _context.Users.Any(x => x.UserId == id);
         }
         //public IActionResult Index()
         //{
