@@ -67,9 +67,13 @@ namespace DrinkApi.Controllers
             catch (DbUpdateConcurrencyException)
             {
                 if (!UserExists(id))
+                {
                     return NotFound();
+                }
                 else
+                {
                     throw;
+                }
             }
             return NoContent();
         }

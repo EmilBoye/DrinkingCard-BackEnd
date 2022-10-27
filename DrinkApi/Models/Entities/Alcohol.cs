@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace DrinkApi.Models.Entities
 {
+    #region AlcoholType
     public enum AlcoholType
     {
-        Vodka,
+        Vodka = 1,
         Gin,
         Tequila,
         Pilsner,
@@ -27,6 +29,8 @@ namespace DrinkApi.Models.Entities
         Rosévin,
         Champagne,
     }
+    #endregion
+    #region Alcohol
     public class Alcohol
     {
         [Key]
@@ -37,7 +41,10 @@ namespace DrinkApi.Models.Entities
         public string? Ingredients { get; set; }
         public AlcoholType alcoholType { get; set; }
         public bool Visible { get; set; }
+        //public int UserId { get; set; }
+        //public User? user { get; set; }
         public DateTime PublishDate { get; set; }
         public DateTime UpdatedDate { get; set; }
     }
+    #endregion
 }
