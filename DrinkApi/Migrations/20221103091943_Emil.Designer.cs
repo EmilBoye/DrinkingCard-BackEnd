@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DrinkApi.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20221026115739_Emil")]
+    [Migration("20221103091943_Emil")]
     partial class Emil
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -33,6 +33,9 @@ namespace DrinkApi.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AlcoId"), 1L, 1);
 
                     b.Property<string>("Author")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Ingredients")
@@ -91,6 +94,9 @@ namespace DrinkApi.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("NonAlcoId"), 1L, 1);
 
                     b.Property<string>("Author")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Ingredients")

@@ -60,11 +60,11 @@ namespace DrinkApi.Controllers
             return CreatedAtAction(nameof(GetNonAlcoholByID), new { id = nonAlcoholPost.NonAlcoId }, nonAlcoholPost);
         }
 
-        [HttpPut]
-        public async Task<IActionResult> UpdateNonAlcohol()
-        {
+        //[HttpPut]
+        //public async Task<IActionResult> UpdateNonAlcohol()
+        //{
 
-        }
+        //}
         #endregion
     }
 }

@@ -33,6 +33,9 @@ namespace DrinkApi.Migrations
                     b.Property<string>("Author")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Ingredients")
                         .HasColumnType("nvarchar(max)");
 
@@ -89,6 +92,9 @@ namespace DrinkApi.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("NonAlcoId"), 1L, 1);
 
                     b.Property<string>("Author")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Ingredients")
