@@ -60,11 +60,19 @@ namespace DrinkApi.Controllers
             return CreatedAtAction(nameof(GetNonAlcoholByID), new { id = nonAlcoholPost.NonAlcoId }, nonAlcoholPost);
         }
 
-        //[HttpPut]
-        //public async Task<IActionResult> UpdateNonAlcohol()
-        //{
+        [HttpPut]
+        public async Task<IActionResult> UpdateNonAlcohol(int id, AlcoholFreeRequest alcoholFree)
+        {
+            var existingAlcoFree = await _context.NonAlcohols.FindAsync(id);
+            if (existingAlcoFree != null)           
+            {
+                existingAlcoFree.Author = alcoholFree.Author;
+                existingAlcoFree.Title = alcoholFree.Title;
+                existingAlcoFree.Description = alcoholFree.Description;
+                existingAlcoFree.Ingredients = alcoholFree.Ingredients;
 
-        //}
+            }
+        }
         #endregion
     }
 }
