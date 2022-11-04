@@ -70,8 +70,33 @@ namespace DrinkApi.Controllers
                 existingAlcoFree.Title = alcoholFree.Title;
                 existingAlcoFree.Description = alcoholFree.Description;
                 existingAlcoFree.Ingredients = alcoholFree.Ingredients;
+                existingAlcoFree.NonAlcoholType = alcoholFree.NonAlcoholType;
+                existingAlcoFree.Visible = alcoholFree.Visible;
+                existingAlcoFree.PublishDate = alcoholFree.PublishDate;
+                existingAlcoFree.UpdatedDate = alcoholFree.UpdatedDate;
 
+                await _context.SaveChangesAsync();
+                return Ok(existingAlcoFree);
             }
+            return NotFound("Drink was not found");
+        }
+
+        [HttpDelete]
+        public async Task<IActionResult> DeleteNonAlcoholic([FromRoute] int id)
+        {
+            var existingAlcoFree = await _context.NonAlcohols.FindAsync(id);
+
+            if (existingAlcoFree == null)
+            {
+                return BadRequest("Drink was not found");
+            }
+            _context.NonAlcohols.Remove(existingAlcoFree);
+            await _context.SaveChangesAsync();
+            return Ok(existingAlcoFree);
+        }
+        private bool NonAlcoholExist(int id)
+        {
+            return _context.NonAlcohols.Any(x => x.NonAlcoId == id);
         }
         #endregion
     }

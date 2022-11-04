@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\eb\\Source\\Repos\\DrinkingCard-BackEnd\\DrinkApi\\DrinkApi.csproj": {}
+    "C:\\Users\\eb\\source\\repos\\DrinkingCard-BackEnd\\DrinkApi\\DrinkApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\eb\\Source\\Repos\\DrinkingCard-BackEnd\\DrinkApi\\DrinkApi.csproj": {
+    "C:\\Users\\eb\\source\\repos\\DrinkingCard-BackEnd\\DrinkApi\\DrinkApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\eb\\Source\\Repos\\DrinkingCard-BackEnd\\DrinkApi\\DrinkApi.csproj",
+        "projectUniqueName": "C:\\Users\\eb\\source\\repos\\DrinkingCard-BackEnd\\DrinkApi\\DrinkApi.csproj",
         "projectName": "DrinkApi",
-        "projectPath": "C:\\Users\\eb\\Source\\Repos\\DrinkingCard-BackEnd\\DrinkApi\\DrinkApi.csproj",
+        "projectPath": "C:\\Users\\eb\\source\\repos\\DrinkingCard-BackEnd\\DrinkApi\\DrinkApi.csproj",
         "packagesPath": "C:\\Users\\eb\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\eb\\Source\\Repos\\DrinkingCard-BackEnd\\DrinkApi\\obj\\",
+        "outputPath": "C:\\Users\\eb\\source\\repos\\DrinkingCard-BackEnd\\DrinkApi\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
