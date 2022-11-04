@@ -42,8 +42,10 @@ namespace DrinkApi.Models.Entities
         public string? Ingredients { get; set; }
         public AlcoholType alcoholType { get; set; }
         public bool Visible { get; set; }
+        #region FKUser
         //public int UserId { get; set; }
         //public User? user { get; set; }
+        #endregion
         public DateTime PublishDate { get; set; }
         public DateTime UpdatedDate { get; set; }
     }
