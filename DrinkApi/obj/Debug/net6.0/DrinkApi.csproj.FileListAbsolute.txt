@@ -122,3 +122,8 @@ C:\Users\eb\Source\Repos\DrinkingCard-BackEnd\DrinkApi\obj\Debug\net6.0\scopedcs
 C:\Users\eb\Source\Repos\DrinkingCard-BackEnd\DrinkApi\obj\Debug\net6.0\DrinkApi.csproj.CopyComplete
 C:\Users\eb\Source\Repos\DrinkingCard-BackEnd\DrinkApi\obj\Debug\net6.0\DrinkApi.genruntimeconfig.cache
 C:\Users\eb\Source\Repos\DrinkingCard-BackEnd\DrinkApi\obj\Debug\net6.0\ref\DrinkApi.dll
+C:\Users\eb\source\repos\DrinkingCard-BackEnd\DrinkApi\obj\Debug\net6.0\staticwebassets\msbuild.DrinkApi.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\eb\source\repos\DrinkingCard-BackEnd\DrinkApi\obj\Debug\net6.0\staticwebassets\msbuild.build.DrinkApi.props
+C:\Users\eb\source\repos\DrinkingCard-BackEnd\DrinkApi\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.DrinkApi.props
+C:\Users\eb\source\repos\DrinkingCard-BackEnd\DrinkApi\obj\Debug\net6.0\staticwebassets\msbuild.buildTransitive.DrinkApi.props
+C:\Users\eb\source\repos\DrinkingCard-BackEnd\DrinkApi\obj\Debug\net6.0\staticwebassets.pack.json

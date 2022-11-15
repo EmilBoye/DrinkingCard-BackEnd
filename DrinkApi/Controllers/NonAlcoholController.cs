@@ -61,25 +61,50 @@ namespace DrinkApi.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> UpdateNonAlcohol(int id, AlcoholFreeRequest alcoholFree)
+        public async Task<IActionResult> UpdateNonAlcohol(int id, NonAlcohol nonAlcohol)
         {
-            var existingAlcoFree = await _context.NonAlcohols.FindAsync(id);
-            if (existingAlcoFree != null)           
+            if (id != nonAlcohol.NonAlcoId)
             {
-                existingAlcoFree.Author = alcoholFree.Author;
-                existingAlcoFree.Title = alcoholFree.Title;
-                existingAlcoFree.Description = alcoholFree.Description;
-                existingAlcoFree.Ingredients = alcoholFree.Ingredients;
-                existingAlcoFree.NonAlcoholType = alcoholFree.NonAlcoholType;
-                existingAlcoFree.Visible = alcoholFree.Visible;
-                existingAlcoFree.PublishDate = alcoholFree.PublishDate;
-                existingAlcoFree.UpdatedDate = alcoholFree.UpdatedDate;
-
-                await _context.SaveChangesAsync();
-                return Ok(existingAlcoFree);
+                return BadRequest("Drink not found");
             }
-            return NotFound("Drink was not found");
+            _context.Entry(nonAlcohol).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!NonAlcoholExist(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+            return NoContent();
         }
+        //public async Task<IActionResult> UpdateNonAlcohol(int id, AlcoholFreeRequest alcoholFree)
+        //{
+        //    var existingAlcoFree = await _context.NonAlcohols.FindAsync(id);
+        //    if (existingAlcoFree != null)           
+        //    {
+        //        existingAlcoFree.Author = alcoholFree.Author;
+        //        existingAlcoFree.Title = alcoholFree.Title;
+        //        existingAlcoFree.Description = alcoholFree.Description;
+        //        existingAlcoFree.Ingredients = alcoholFree.Ingredients;
+        //        existingAlcoFree.NonAlcoholType = alcoholFree.NonAlcoholType;
+        //        existingAlcoFree.Visible = alcoholFree.Visible;
+        //        existingAlcoFree.PublishDate = alcoholFree.PublishDate;
+        //        existingAlcoFree.UpdatedDate = alcoholFree.UpdatedDate;
+
+        //        await _context.SaveChangesAsync();
+        //        return Ok(existingAlcoFree);
+        //    }
+        //    return NotFound("Drink was not found");
+        //}
 
         [HttpDelete]
         public async Task<IActionResult> DeleteNonAlcoholic([FromRoute] int id)
