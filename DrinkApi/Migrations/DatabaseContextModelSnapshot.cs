@@ -51,6 +51,9 @@ namespace DrinkApi.Migrations
                     b.Property<DateTime>("UpdatedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
                     b.Property<bool>("Visible")
                         .HasColumnType("bit");
 
@@ -58,6 +61,8 @@ namespace DrinkApi.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("AlcoId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Alcohols");
                 });
@@ -112,10 +117,15 @@ namespace DrinkApi.Migrations
                     b.Property<DateTime>("UpdatedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
+
                     b.Property<bool>("Visible")
                         .HasColumnType("bit");
 
                     b.HasKey("NonAlcoId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("NonAlcohols");
                 });
@@ -163,6 +173,17 @@ namespace DrinkApi.Migrations
                     b.ToTable("Users");
                 });
 
+            modelBuilder.Entity("DrinkApi.Models.Entities.Alcohol", b =>
+                {
+                    b.HasOne("DrinkApi.Models.Entities.User", "user")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("user");
+                });
+
             modelBuilder.Entity("DrinkApi.Models.Entities.Login", b =>
                 {
                     b.HasOne("DrinkApi.Models.Entities.User", "User")
@@ -172,6 +193,15 @@ namespace DrinkApi.Migrations
                         .IsRequired();
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("DrinkApi.Models.Entities.NonAlcohol", b =>
+                {
+                    b.HasOne("DrinkApi.Models.Entities.User", "user")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("user");
                 });
 
             modelBuilder.Entity("DrinkApi.Models.Entities.User", b =>

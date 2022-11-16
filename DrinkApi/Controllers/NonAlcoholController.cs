@@ -41,7 +41,7 @@ namespace DrinkApi.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> PostNonAlcohol([FromBody] AlcoholFreeRequest request)
+        public async Task<IActionResult> PostNonAlcohol([FromBody] NonAlcohol request)
         {
             var nonAlcoholPost = new NonAlcohol()
             {
