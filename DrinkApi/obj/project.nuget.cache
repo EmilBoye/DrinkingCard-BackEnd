@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "hC+hbAIbm2FkP9Prn2hlXnw9lMrVq/RWKtiWEUAaciIC4tdmgrbz2inLexG0b6ja0KJwImL020iAMiG5TXD9xg==",
+  "dgSpecHash": "kxCjwZqMa76iFOUl2FznOeaJ9aewSRewkRtEMJXV463EZ33EYaPGrQzU1rzZwKGKWt5d2ltJUe7wcjco3yBP+Q==",
   "success": true,
-  "projectFilePath": "C:\\Users\\eb\\Source\\Repos\\DrinkingCard-BackEnd\\DrinkApi\\DrinkApi.csproj",
+  "projectFilePath": "C:\\Users\\eb\\source\\repos\\DrinkingCard-BackEnd\\DrinkApi\\DrinkApi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\eb\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\eb\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",

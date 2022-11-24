@@ -16,7 +16,7 @@ namespace DrinkApi.Models.Entities
         public string? Ingredients { get; set; }
         public string? NonAlcoholType { get; set; }
         public bool Visible { get; set; }
-        //public User? user { get; set; }
+        public User? user { get; set; }
         public DateTime PublishDate { get; set; }
         public DateTime UpdatedDate { get; set; }
     }

@@ -53,7 +53,7 @@ namespace DrinkApi.Controllers
 
         // POST api/Alcohol
         [HttpPost]
-        public async Task<IActionResult> CreateAlcoholType([FromBody] AlcoholRequest alcohol)
+        public async Task<IActionResult> CreateAlcoholType([FromBody] Alcohol alcohol)
         {
             var alcoholPost = new Alcohol()
             {
