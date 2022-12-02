@@ -42,12 +42,28 @@ namespace DrinkApi.Controllers
         // Create
         // POST api/User
         [HttpPost]
-        public async Task<ActionResult<User>> PostUser(User user)
+        public async Task<IActionResult> PostUser([FromBody] User user)
         {
-            _context.Users.Add(user);
+            var postUser = new User()
+            {
+                UserId = user.UserId,
+                roleId = user.roleId,
+                role = user.role,
+                userName = user.userName,
+                passwordHash = user.passwordHash,
+            };
+            postUser.UserId = new int();
+            await _context.AddAsync(postUser);
             await _context.SaveChangesAsync();
-            return user;
+
+            return CreatedAtAction(nameof(GetUserById), new { id = postUser.UserId }, postUser);
         }
+        //public async Task<ActionResult<User>> PostUser(User user)
+        //{
+        //    _context.Users.Add(user);
+        //    await _context.SaveChangesAsync();
+        //    return user;
+        //}
 
         // Update
         // PUT api/User/5

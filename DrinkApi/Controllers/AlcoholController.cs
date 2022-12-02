@@ -60,6 +60,7 @@ namespace DrinkApi.Controllers
                 Author = alcohol.Author,
                 Title = alcohol.Title,
                 Strength = alcohol.Strength,
+                Description = alcohol.Description,
                 Ingredients = alcohol.Ingredients,
                 alcoholType = alcohol.alcoholType,
                 Visible = alcohol.Visible,
