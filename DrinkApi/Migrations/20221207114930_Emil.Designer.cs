@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DrinkApi.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20221115072950_Emil")]
+    [Migration("20221207114930_Emil")]
     partial class Emil
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -119,7 +119,7 @@ namespace DrinkApi.Migrations
                     b.Property<DateTime>("UpdatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("UserId")
+                    b.Property<int>("UserId")
                         .HasColumnType("int");
 
                     b.Property<bool>("Visible")
@@ -201,7 +201,9 @@ namespace DrinkApi.Migrations
                 {
                     b.HasOne("DrinkApi.Models.Entities.User", "user")
                         .WithMany()
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("user");
                 });

@@ -104,7 +104,7 @@ namespace DrinkApi.Migrations
                     Ingredients = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     NonAlcoholType = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Visible = table.Column<bool>(type: "bit", nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: true),
+                    UserId = table.Column<int>(type: "int", nullable: false),
                     PublishDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
@@ -115,7 +115,8 @@ namespace DrinkApi.Migrations
                         name: "FK_NonAlcohols_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
-                        principalColumn: "UserId");
+                        principalColumn: "UserId",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(

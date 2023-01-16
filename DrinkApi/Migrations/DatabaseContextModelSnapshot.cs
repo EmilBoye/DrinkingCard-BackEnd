@@ -117,7 +117,7 @@ namespace DrinkApi.Migrations
                     b.Property<DateTime>("UpdatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("UserId")
+                    b.Property<int>("UserId")
                         .HasColumnType("int");
 
                     b.Property<bool>("Visible")
@@ -199,7 +199,9 @@ namespace DrinkApi.Migrations
                 {
                     b.HasOne("DrinkApi.Models.Entities.User", "user")
                         .WithMany()
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("user");
                 });

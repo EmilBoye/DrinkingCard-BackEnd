@@ -77,7 +77,7 @@ namespace DrinkApi.Controllers
 
         // PUT api/Alcohol/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutAlcoholType(int id, Alcohol alcohol)
+        public async Task<IActionResult> UpdateAlcoholType(int id, Alcohol alcohol)
         {
             if (id != alcohol.AlcoId)
             {
