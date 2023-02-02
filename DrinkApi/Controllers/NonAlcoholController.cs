@@ -41,17 +41,18 @@ namespace DrinkApi.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> PostNonAlcohol([FromBody] NonAlcohol request)
+        public async Task<IActionResult> PostNonAlcohol([FromBody] NonAlcohol nonalcohol)
         {
             var nonAlcoholPost = new NonAlcohol()
             {
-                Author = request.Author,
-                Title = request.Title,
-                Ingredients = request.Ingredients,
-                NonAlcoholType = request.NonAlcoholType,
-                Visible = request.Visible,
-                PublishDate = request.PublishDate,
-                UpdatedDate = request.UpdatedDate
+                Author = nonalcohol.Author,
+                Title = nonalcohol.Title,
+                Ingredients = nonalcohol.Ingredients,
+                FeaturedImageUrl = nonalcohol.FeaturedImageUrl,
+                NonAlcoholType = nonalcohol.NonAlcoholType,
+                Visible = nonalcohol.Visible,
+                PublishDate = nonalcohol.PublishDate,
+                UpdatedDate = nonalcohol.UpdatedDate
             };
             nonAlcoholPost.NonAlcoId = new int();
             await _context.NonAlcohols.AddAsync(nonAlcoholPost);

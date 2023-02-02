@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DrinkApi.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20221207114930_Emil")]
-    partial class Emil
+    [Migration("20230201111306_Drink")]
+    partial class Drink
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -38,6 +38,9 @@ namespace DrinkApi.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("FeaturedImageUrl")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Ingredients")
                         .HasColumnType("nvarchar(max)");
 
@@ -53,7 +56,7 @@ namespace DrinkApi.Migrations
                     b.Property<DateTime>("UpdatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("UserId")
+                    b.Property<int?>("UserId")
                         .HasColumnType("int");
 
                     b.Property<bool>("Visible")
@@ -104,6 +107,9 @@ namespace DrinkApi.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("FeaturedImageUrl")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Ingredients")
                         .HasColumnType("nvarchar(max)");
 
@@ -119,7 +125,7 @@ namespace DrinkApi.Migrations
                     b.Property<DateTime>("UpdatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("UserId")
+                    b.Property<int?>("UserId")
                         .HasColumnType("int");
 
                     b.Property<bool>("Visible")
@@ -179,9 +185,7 @@ namespace DrinkApi.Migrations
                 {
                     b.HasOne("DrinkApi.Models.Entities.User", "user")
                         .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId");
 
                     b.Navigation("user");
                 });
@@ -201,9 +205,7 @@ namespace DrinkApi.Migrations
                 {
                     b.HasOne("DrinkApi.Models.Entities.User", "user")
                         .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId");
 
                     b.Navigation("user");
                 });

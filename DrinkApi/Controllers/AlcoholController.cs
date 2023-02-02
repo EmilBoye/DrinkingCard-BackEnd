@@ -61,6 +61,7 @@ namespace DrinkApi.Controllers
                 Title = alcohol.Title,
                 Strength = alcohol.Strength,
                 Description = alcohol.Description,
+                FeaturedImageUrl = alcohol.FeaturedImageUrl,
                 Ingredients = alcohol.Ingredients,
                 alcoholType = alcohol.alcoholType,
                 Visible = alcohol.Visible,
