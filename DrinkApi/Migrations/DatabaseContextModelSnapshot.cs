@@ -30,6 +30,9 @@ namespace DrinkApi.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AlcoId"), 1L, 1);
 
+                    b.Property<int?>("AlcoholType")
+                        .HasColumnType("int");
+
                     b.Property<string>("Author")
                         .HasColumnType("nvarchar(max)");
 
@@ -42,7 +45,7 @@ namespace DrinkApi.Migrations
                     b.Property<string>("Ingredients")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("PublishDate")
+                    b.Property<DateTime?>("PublishDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Strength")
@@ -51,7 +54,7 @@ namespace DrinkApi.Migrations
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("UpdatedDate")
+                    b.Property<DateTime?>("UpdatedDate")
                         .HasColumnType("datetime2");
 
                     b.Property<int?>("UserId")
@@ -59,9 +62,6 @@ namespace DrinkApi.Migrations
 
                     b.Property<bool>("Visible")
                         .HasColumnType("bit");
-
-                    b.Property<int>("alcoholType")
-                        .HasColumnType("int");
 
                     b.HasKey("AlcoId");
 
@@ -114,13 +114,13 @@ namespace DrinkApi.Migrations
                     b.Property<string>("NonAlcoholType")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("PublishDate")
+                    b.Property<DateTime?>("PublishDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("UpdatedDate")
+                    b.Property<DateTime?>("UpdatedDate")
                         .HasColumnType("datetime2");
 
                     b.Property<int?>("UserId")
@@ -138,19 +138,19 @@ namespace DrinkApi.Migrations
 
             modelBuilder.Entity("DrinkApi.Models.Entities.Role", b =>
                 {
-                    b.Property<int>("roleId")
+                    b.Property<int>("RoleId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("roleId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RoleId"), 1L, 1);
 
-                    b.Property<int>("level")
+                    b.Property<int>("Level")
                         .HasColumnType("int");
 
-                    b.Property<int>("roleType")
+                    b.Property<int?>("RoleType")
                         .HasColumnType("int");
 
-                    b.HasKey("roleId");
+                    b.HasKey("RoleId");
 
                     b.ToTable("Roles");
                 });
@@ -163,29 +163,29 @@ namespace DrinkApi.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"), 1L, 1);
 
-                    b.Property<string>("passwordHash")
+                    b.Property<string>("Passwordhash")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("roleId")
+                    b.Property<int>("RoleId")
                         .HasColumnType("int");
 
-                    b.Property<string>("userName")
+                    b.Property<string>("Username")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("UserId");
 
-                    b.HasIndex("roleId");
+                    b.HasIndex("RoleId");
 
                     b.ToTable("Users");
                 });
 
             modelBuilder.Entity("DrinkApi.Models.Entities.Alcohol", b =>
                 {
-                    b.HasOne("DrinkApi.Models.Entities.User", "user")
+                    b.HasOne("DrinkApi.Models.Entities.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId");
 
-                    b.Navigation("user");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("DrinkApi.Models.Entities.Login", b =>
@@ -201,22 +201,22 @@ namespace DrinkApi.Migrations
 
             modelBuilder.Entity("DrinkApi.Models.Entities.NonAlcohol", b =>
                 {
-                    b.HasOne("DrinkApi.Models.Entities.User", "user")
+                    b.HasOne("DrinkApi.Models.Entities.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId");
 
-                    b.Navigation("user");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("DrinkApi.Models.Entities.User", b =>
                 {
-                    b.HasOne("DrinkApi.Models.Entities.Role", "role")
+                    b.HasOne("DrinkApi.Models.Entities.Role", "Role")
                         .WithMany()
-                        .HasForeignKey("roleId")
+                        .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("role");
+                    b.Navigation("Role");
                 });
 #pragma warning restore 612, 618
         }

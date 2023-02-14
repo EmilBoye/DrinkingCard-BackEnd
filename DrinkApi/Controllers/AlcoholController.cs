@@ -63,7 +63,7 @@ namespace DrinkApi.Controllers
                 Description = alcohol.Description,
                 FeaturedImageUrl = alcohol.FeaturedImageUrl,
                 Ingredients = alcohol.Ingredients,
-                alcoholType = alcohol.alcoholType,
+                AlcoholType = alcohol.AlcoholType,
                 Visible = alcohol.Visible,
                 PublishDate = alcohol.PublishDate,
                 UpdatedDate = alcohol.UpdatedDate

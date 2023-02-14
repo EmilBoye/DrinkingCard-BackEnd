@@ -13,9 +13,9 @@ namespace DrinkApi.Models.Entities
         /// </summary>
         [Key]
         public int UserId { get; set; }
-        public int roleId { get; set; }
-        public Role? role { get; set; }
-        public string? userName { get; set; }
-        public string? passwordHash { get; set; }
+        public int RoleId { get; set; }
+        public Role? Role { get; set; }
+        public string? Username { get; set; }
+        public string? Passwordhash { get; set; }
     }
 }

@@ -18,10 +18,10 @@ namespace DrinkApi.Models.Entities
         public string? NonAlcoholType { get; set; }
         public bool Visible { get; set; }
         #region FKUser
-        public User? user { get; set; }
+        public User? User { get; set; }
         //public int UserId { get; set; }
         #endregion
-        public DateTime PublishDate { get; set; }
-        public DateTime UpdatedDate { get; set; }
+        public DateTime? PublishDate { get; set; }
+        public DateTime? UpdatedDate { get; set; }
     }
 }

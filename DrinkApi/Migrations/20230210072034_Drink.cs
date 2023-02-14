@@ -13,14 +13,14 @@ namespace DrinkApi.Migrations
                 name: "Roles",
                 columns: table => new
                 {
-                    roleId = table.Column<int>(type: "int", nullable: false)
+                    RoleId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    roleType = table.Column<int>(type: "int", nullable: false),
-                    level = table.Column<int>(type: "int", nullable: false)
+                    RoleType = table.Column<int>(type: "int", nullable: true),
+                    Level = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Roles", x => x.roleId);
+                    table.PrimaryKey("PK_Roles", x => x.RoleId);
                 });
 
             migrationBuilder.CreateTable(
@@ -29,18 +29,18 @@ namespace DrinkApi.Migrations
                 {
                     UserId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    roleId = table.Column<int>(type: "int", nullable: false),
-                    userName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    passwordHash = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    RoleId = table.Column<int>(type: "int", nullable: false),
+                    Username = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Passwordhash = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Users", x => x.UserId);
                     table.ForeignKey(
-                        name: "FK_Users_Roles_roleId",
-                        column: x => x.roleId,
+                        name: "FK_Users_Roles_RoleId",
+                        column: x => x.RoleId,
                         principalTable: "Roles",
-                        principalColumn: "roleId",
+                        principalColumn: "RoleId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -56,11 +56,11 @@ namespace DrinkApi.Migrations
                     FeaturedImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Strength = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Ingredients = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    alcoholType = table.Column<int>(type: "int", nullable: false),
+                    AlcoholType = table.Column<int>(type: "int", nullable: true),
                     Visible = table.Column<bool>(type: "bit", nullable: false),
                     UserId = table.Column<int>(type: "int", nullable: true),
-                    PublishDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    PublishDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -106,8 +106,8 @@ namespace DrinkApi.Migrations
                     NonAlcoholType = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Visible = table.Column<bool>(type: "bit", nullable: false),
                     UserId = table.Column<int>(type: "int", nullable: true),
-                    PublishDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    PublishDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -135,9 +135,9 @@ namespace DrinkApi.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Users_roleId",
+                name: "IX_Users_RoleId",
                 table: "Users",
-                column: "roleId");
+                column: "RoleId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

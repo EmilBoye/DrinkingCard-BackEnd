@@ -47,10 +47,10 @@ namespace DrinkApi.Controllers
             var postUser = new User()
             {
                 UserId = user.UserId,
-                roleId = user.roleId,
-                role = user.role,
-                userName = user.userName,
-                passwordHash = user.passwordHash,
+                RoleId = user.RoleId,
+                Role = user.Role,
+                Username = user.Username,
+                Passwordhash = user.Passwordhash,
             };
             postUser.UserId = new int();
             await _context.AddAsync(postUser);
