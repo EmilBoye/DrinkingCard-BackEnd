@@ -16,6 +16,8 @@ namespace DrinkApi.Models.Entities
         public int RoleId { get; set; }
         public Role? Role { get; set; }
         public string? Username { get; set; }
+        public int? AuthorId { get; set; }
+        public Alcohol? Author { get; set; }
         public string? Passwordhash { get; set; }
     }
 }

@@ -57,15 +57,10 @@ namespace DrinkApi.Migrations
                     b.Property<DateTime?>("UpdatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("UserId")
-                        .HasColumnType("int");
-
                     b.Property<bool>("Visible")
                         .HasColumnType("bit");
 
                     b.HasKey("AlcoId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Alcohols");
                 });
@@ -163,6 +158,9 @@ namespace DrinkApi.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"), 1L, 1);
 
+                    b.Property<int?>("AuthorId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Passwordhash")
                         .HasColumnType("nvarchar(max)");
 
@@ -174,18 +172,11 @@ namespace DrinkApi.Migrations
 
                     b.HasKey("UserId");
 
+                    b.HasIndex("AuthorId");
+
                     b.HasIndex("RoleId");
 
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("DrinkApi.Models.Entities.Alcohol", b =>
-                {
-                    b.HasOne("DrinkApi.Models.Entities.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("DrinkApi.Models.Entities.Login", b =>
@@ -210,11 +201,17 @@ namespace DrinkApi.Migrations
 
             modelBuilder.Entity("DrinkApi.Models.Entities.User", b =>
                 {
+                    b.HasOne("DrinkApi.Models.Entities.Alcohol", "Author")
+                        .WithMany()
+                        .HasForeignKey("AuthorId");
+
                     b.HasOne("DrinkApi.Models.Entities.Role", "Role")
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Author");
 
                     b.Navigation("Role");
                 });

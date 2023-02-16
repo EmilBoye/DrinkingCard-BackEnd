@@ -10,6 +10,28 @@ namespace DrinkApi.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "Alcohols",
+                columns: table => new
+                {
+                    AlcoId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Author = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FeaturedImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Strength = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Ingredients = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    AlcoholType = table.Column<int>(type: "int", nullable: true),
+                    Visible = table.Column<bool>(type: "bit", nullable: false),
+                    PublishDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Alcohols", x => x.AlcoId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Roles",
                 columns: table => new
                 {
@@ -31,45 +53,23 @@ namespace DrinkApi.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     RoleId = table.Column<int>(type: "int", nullable: false),
                     Username = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    AuthorId = table.Column<int>(type: "int", nullable: true),
                     Passwordhash = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Users", x => x.UserId);
                     table.ForeignKey(
+                        name: "FK_Users_Alcohols_AuthorId",
+                        column: x => x.AuthorId,
+                        principalTable: "Alcohols",
+                        principalColumn: "AlcoId");
+                    table.ForeignKey(
                         name: "FK_Users_Roles_RoleId",
                         column: x => x.RoleId,
                         principalTable: "Roles",
                         principalColumn: "RoleId",
                         onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Alcohols",
-                columns: table => new
-                {
-                    AlcoId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Author = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    FeaturedImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Strength = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Ingredients = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    AlcoholType = table.Column<int>(type: "int", nullable: true),
-                    Visible = table.Column<bool>(type: "bit", nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: true),
-                    PublishDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Alcohols", x => x.AlcoId);
-                    table.ForeignKey(
-                        name: "FK_Alcohols_Users_UserId",
-                        column: x => x.UserId,
-                        principalTable: "Users",
-                        principalColumn: "UserId");
                 });
 
             migrationBuilder.CreateTable(
@@ -120,11 +120,6 @@ namespace DrinkApi.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Alcohols_UserId",
-                table: "Alcohols",
-                column: "UserId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Logins_UserId",
                 table: "Logins",
                 column: "UserId");
@@ -135,6 +130,11 @@ namespace DrinkApi.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Users_AuthorId",
+                table: "Users",
+                column: "AuthorId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Users_RoleId",
                 table: "Users",
                 column: "RoleId");
@@ -143,9 +143,6 @@ namespace DrinkApi.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Alcohols");
-
-            migrationBuilder.DropTable(
                 name: "Logins");
 
             migrationBuilder.DropTable(
@@ -153,6 +150,9 @@ namespace DrinkApi.Migrations
 
             migrationBuilder.DropTable(
                 name: "Users");
+
+            migrationBuilder.DropTable(
+                name: "Alcohols");
 
             migrationBuilder.DropTable(
                 name: "Roles");
