@@ -118,15 +118,10 @@ namespace DrinkApi.Migrations
                     b.Property<DateTime?>("UpdatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("UserId")
-                        .HasColumnType("int");
-
                     b.Property<bool>("Visible")
                         .HasColumnType("bit");
 
                     b.HasKey("NonAlcoId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("NonAlcohols");
                 });
@@ -158,7 +153,7 @@ namespace DrinkApi.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"), 1L, 1);
 
-                    b.Property<int?>("AuthorId")
+                    b.Property<int?>("AlcoholAlcoId")
                         .HasColumnType("int");
 
                     b.Property<string>("Passwordhash")
@@ -172,7 +167,7 @@ namespace DrinkApi.Migrations
 
                     b.HasKey("UserId");
 
-                    b.HasIndex("AuthorId");
+                    b.HasIndex("AlcoholAlcoId");
 
                     b.HasIndex("RoleId");
 
@@ -190,20 +185,11 @@ namespace DrinkApi.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("DrinkApi.Models.Entities.NonAlcohol", b =>
-                {
-                    b.HasOne("DrinkApi.Models.Entities.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId");
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("DrinkApi.Models.Entities.User", b =>
                 {
-                    b.HasOne("DrinkApi.Models.Entities.Alcohol", "Author")
+                    b.HasOne("DrinkApi.Models.Entities.Alcohol", "Alcohol")
                         .WithMany()
-                        .HasForeignKey("AuthorId");
+                        .HasForeignKey("AlcoholAlcoId");
 
                     b.HasOne("DrinkApi.Models.Entities.Role", "Role")
                         .WithMany()
@@ -211,7 +197,7 @@ namespace DrinkApi.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Author");
+                    b.Navigation("Alcohol");
 
                     b.Navigation("Role");
                 });

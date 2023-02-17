@@ -50,7 +50,7 @@ namespace DrinkApi.Controllers
                 RoleId = user.RoleId,
                 Role = user.Role,
                 Username = user.Username,
-                Author = user.Author,
+                Alcohol = user.Alcohol,
                 Passwordhash = user.Passwordhash,
             };
             postUser.UserId = new int();
