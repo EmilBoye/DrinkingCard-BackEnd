@@ -12,7 +12,7 @@ namespace DrinkApi.Models.Entities
         /// Key står for primary key
         /// </summary>
         [Key]
-        public int UserId { get; set; }
+        public int Id { get; set; }
         public int RoleId { get; set; }
         public Role? Role { get; set; }
         public string? Username { get; set; }

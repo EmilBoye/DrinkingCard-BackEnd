@@ -69,18 +69,18 @@ namespace DrinkApi.Controllers
                 UpdatedDate = alcohol.UpdatedDate
             };
 
-            alcoholPost.AlcoId = new int();
+            alcoholPost.Id = new int();
             await _context.Alcohols.AddAsync(alcoholPost);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetAlcoholById), new { id = alcoholPost.AlcoId }, alcoholPost);
+            return CreatedAtAction(nameof(GetAlcoholById), new { id = alcoholPost.Id }, alcoholPost);
         }
 
         // PUT api/Alcohol/5
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateAlcoholType(int id, Alcohol alcohol)
         {
-            if (id != alcohol.AlcoId)
+            if (id != alcohol.Id)
             {
                 return BadRequest("Id not found");
             }
@@ -120,7 +120,7 @@ namespace DrinkApi.Controllers
         }
         private bool AlcoholExists(int id)
         {
-            return _context.Alcohols.Any(x => x.AlcoId == id);
+            return _context.Alcohols.Any(x => x.Id == id);
         }
         #endregion
     }

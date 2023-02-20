@@ -46,18 +46,18 @@ namespace DrinkApi.Controllers
         {
             var postUser = new User()
             {
-                UserId = user.UserId,
+                Id = user.Id,
                 RoleId = user.RoleId,
                 Role = user.Role,
                 Username = user.Username,
                 Alcohol = user.Alcohol,
                 Passwordhash = user.Passwordhash,
             };
-            postUser.UserId = new int();
+            postUser.Id = new int();
             await _context.AddAsync(postUser);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetUserById), new { id = postUser.UserId }, postUser);
+            return CreatedAtAction(nameof(GetUserById), new { id = postUser.Id }, postUser);
         }
         //public async Task<ActionResult<User>> PostUser(User user)
         //{
@@ -71,7 +71,7 @@ namespace DrinkApi.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateUser(int id, User user)
         {
-            if (id != user.UserId)
+            if (id != user.Id)
             {
                 return BadRequest();
             }
@@ -114,7 +114,7 @@ namespace DrinkApi.Controllers
 
         private bool UserExists(int id)
         {
-            return _context.Users.Any(x => x.UserId == id);
+            return _context.Users.Any(x => x.Id == id);
         }
         //public IActionResult Index()
         //{

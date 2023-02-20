@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DrinkApi.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20230217102535_Drink")]
+    [Migration("20230220112229_Drink")]
     partial class Drink
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -26,11 +26,11 @@ namespace DrinkApi.Migrations
 
             modelBuilder.Entity("DrinkApi.Models.Entities.Alcohol", b =>
                 {
-                    b.Property<int>("AlcoId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AlcoId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<int?>("AlcoholType")
                         .HasColumnType("int");
@@ -62,7 +62,7 @@ namespace DrinkApi.Migrations
                     b.Property<bool>("Visible")
                         .HasColumnType("bit");
 
-                    b.HasKey("AlcoId");
+                    b.HasKey("Id");
 
                     b.ToTable("Alcohols");
                 });
@@ -90,11 +90,11 @@ namespace DrinkApi.Migrations
 
             modelBuilder.Entity("DrinkApi.Models.Entities.NonAlcohol", b =>
                 {
-                    b.Property<int>("NonAlcoId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("NonAlcoId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Author")
                         .HasColumnType("nvarchar(max)");
@@ -123,7 +123,7 @@ namespace DrinkApi.Migrations
                     b.Property<bool>("Visible")
                         .HasColumnType("bit");
 
-                    b.HasKey("NonAlcoId");
+                    b.HasKey("Id");
 
                     b.ToTable("NonAlcohols");
                 });
@@ -149,13 +149,13 @@ namespace DrinkApi.Migrations
 
             modelBuilder.Entity("DrinkApi.Models.Entities.User", b =>
                 {
-                    b.Property<int>("UserId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int?>("AlcoholAlcoId")
+                    b.Property<int?>("AlcoholId")
                         .HasColumnType("int");
 
                     b.Property<string>("Passwordhash")
@@ -167,9 +167,9 @@ namespace DrinkApi.Migrations
                     b.Property<string>("Username")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("UserId");
+                    b.HasKey("Id");
 
-                    b.HasIndex("AlcoholAlcoId");
+                    b.HasIndex("AlcoholId");
 
                     b.HasIndex("RoleId");
 
@@ -191,7 +191,7 @@ namespace DrinkApi.Migrations
                 {
                     b.HasOne("DrinkApi.Models.Entities.Alcohol", "Alcohol")
                         .WithMany()
-                        .HasForeignKey("AlcoholAlcoId");
+                        .HasForeignKey("AlcoholId");
 
                     b.HasOne("DrinkApi.Models.Entities.Role", "Role")
                         .WithMany()
