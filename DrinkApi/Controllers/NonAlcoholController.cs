@@ -107,7 +107,7 @@ namespace DrinkApi.Controllers
         //    return NotFound("Drink was not found");
         //}
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteNonAlcoholic([FromRoute] int id)
         {
             var existingAlcoFree = await _context.NonAlcohols.FindAsync(id);

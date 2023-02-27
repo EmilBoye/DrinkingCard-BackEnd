@@ -85,7 +85,7 @@ namespace DrinkApi.Controllers
             {
                 if (!UserExists(id))
                 {
-                    return NotFound();
+                    return NotFound("User was not found");
                 }
                 else
                 {
@@ -105,7 +105,7 @@ namespace DrinkApi.Controllers
 
             if (existingUser == null)
             {
-                return BadRequest("User not found");
+                return Ok("User was not found");
             }
             _context.Users.Remove(existingUser);
             await _context.SaveChangesAsync();

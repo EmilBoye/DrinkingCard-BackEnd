@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DrinkApi.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20230220112229_Drink")]
+    [Migration("20230227132823_Drink")]
     partial class Drink
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
