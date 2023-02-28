@@ -47,7 +47,7 @@ namespace DrinkApi.Controllers
             var postUser = new User()
             {
                 Id = user.Id,
-                RoleId = user.RoleId,
+                RoleId = 2,
                 Role = user.Role,
                 Username = user.Username,
                 Alcohol = user.Alcohol,
