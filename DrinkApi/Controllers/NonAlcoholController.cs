@@ -41,29 +41,30 @@ namespace DrinkApi.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> PostNonAlcohol([FromBody] NonAlcohol request)
+        public async Task<IActionResult> PostNonAlcohol([FromBody] NonAlcohol nonalcohol)
         {
             var nonAlcoholPost = new NonAlcohol()
             {
-                Author = request.Author,
-                Title = request.Title,
-                Ingredients = request.Ingredients,
-                NonAlcoholType = request.NonAlcoholType,
-                Visible = request.Visible,
-                PublishDate = request.PublishDate,
-                UpdatedDate = request.UpdatedDate
+                Author = nonalcohol.Author,
+                Title = nonalcohol.Title,
+                Ingredients = nonalcohol.Ingredients,
+                FeaturedImageUrl = nonalcohol.FeaturedImageUrl,
+                NonAlcoholType = nonalcohol.NonAlcoholType,
+                Visible = nonalcohol.Visible,
+                PublishDate = nonalcohol.PublishDate,
+                UpdatedDate = nonalcohol.UpdatedDate
             };
-            nonAlcoholPost.NonAlcoId = new int();
+            nonAlcoholPost.Id = new int();
             await _context.NonAlcohols.AddAsync(nonAlcoholPost);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetNonAlcoholByID), new { id = nonAlcoholPost.NonAlcoId }, nonAlcoholPost);
+            return CreatedAtAction(nameof(GetNonAlcoholByID), new { id = nonAlcoholPost.Id }, nonAlcoholPost);
         }
 
         [HttpPut]
         public async Task<IActionResult> UpdateNonAlcohol(int id, NonAlcohol nonAlcohol)
         {
-            if (id != nonAlcohol.NonAlcoId)
+            if (id != nonAlcohol.Id)
             {
                 return BadRequest("Drink not found");
             }
@@ -106,7 +107,7 @@ namespace DrinkApi.Controllers
         //    return NotFound("Drink was not found");
         //}
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteNonAlcoholic([FromRoute] int id)
         {
             var existingAlcoFree = await _context.NonAlcohols.FindAsync(id);
@@ -121,7 +122,7 @@ namespace DrinkApi.Controllers
         }
         private bool NonAlcoholExist(int id)
         {
-            return _context.NonAlcohols.Any(x => x.NonAlcoId == id);
+            return _context.NonAlcohols.Any(x => x.Id == id);
         }
         #endregion
     }
