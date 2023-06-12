@@ -117,7 +117,7 @@ namespace DrinkApi.Controllers
             }
             _context.Alcohols.Remove(existingAlcohol);
             await _context.SaveChangesAsync();
-            return Ok(existingAlcohol);
+            return Ok(existingAlcohol + "");
         }
         private bool AlcoholExists(int id)
         {
