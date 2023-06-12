@@ -77,6 +77,7 @@ namespace DrinkApi.Migrations
                     RoleId = table.Column<int>(type: "int", nullable: false),
                     Username = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     AlcoholId = table.Column<int>(type: "int", nullable: true),
+                    NonAlcoholId = table.Column<int>(type: "int", nullable: true),
                     Passwordhash = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
@@ -86,6 +87,11 @@ namespace DrinkApi.Migrations
                         name: "FK_Users_Alcohols_AlcoholId",
                         column: x => x.AlcoholId,
                         principalTable: "Alcohols",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Users_NonAlcohols_NonAlcoholId",
+                        column: x => x.NonAlcoholId,
+                        principalTable: "NonAlcohols",
                         principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Users_Roles_RoleId",
@@ -151,6 +157,11 @@ namespace DrinkApi.Migrations
                 column: "AlcoholId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Users_NonAlcoholId",
+                table: "Users",
+                column: "NonAlcoholId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Users_RoleId",
                 table: "Users",
                 column: "RoleId");
@@ -162,9 +173,6 @@ namespace DrinkApi.Migrations
                 name: "Logins");
 
             migrationBuilder.DropTable(
-                name: "NonAlcohols");
-
-            migrationBuilder.DropTable(
                 name: "Ratings");
 
             migrationBuilder.DropTable(
@@ -172,6 +180,9 @@ namespace DrinkApi.Migrations
 
             migrationBuilder.DropTable(
                 name: "Alcohols");
+
+            migrationBuilder.DropTable(
+                name: "NonAlcohols");
 
             migrationBuilder.DropTable(
                 name: "Roles");

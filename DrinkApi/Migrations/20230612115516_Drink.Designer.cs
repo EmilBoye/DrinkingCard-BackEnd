@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DrinkApi.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20230612113421_Drink")]
+    [Migration("20230612115516_Drink")]
     partial class Drink
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -188,6 +188,9 @@ namespace DrinkApi.Migrations
                     b.Property<int?>("AlcoholId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("NonAlcoholId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Passwordhash")
                         .HasColumnType("nvarchar(max)");
 
@@ -200,6 +203,8 @@ namespace DrinkApi.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("AlcoholId");
+
+                    b.HasIndex("NonAlcoholId");
 
                     b.HasIndex("RoleId");
 
@@ -232,6 +237,10 @@ namespace DrinkApi.Migrations
                         .WithMany()
                         .HasForeignKey("AlcoholId");
 
+                    b.HasOne("DrinkApi.Models.Entities.NonAlcohol", "NonAlcohol")
+                        .WithMany()
+                        .HasForeignKey("NonAlcoholId");
+
                     b.HasOne("DrinkApi.Models.Entities.Role", "Role")
                         .WithMany()
                         .HasForeignKey("RoleId")
@@ -239,6 +248,8 @@ namespace DrinkApi.Migrations
                         .IsRequired();
 
                     b.Navigation("Alcohol");
+
+                    b.Navigation("NonAlcohol");
 
                     b.Navigation("Role");
                 });

@@ -58,6 +58,7 @@ namespace DrinkApi.Controllers
             var alcoholPost = new Alcohol()
             {
                 Author = alcohol.Author,
+                AuthorId = alcohol.AuthorId,
                 Title = alcohol.Title,
                 Strength = alcohol.Strength,
                 Description = alcohol.Description,
@@ -116,7 +117,7 @@ namespace DrinkApi.Controllers
             }
             _context.Alcohols.Remove(existingAlcohol);
             await _context.SaveChangesAsync();
-            return Ok(existingAlcohol + "");
+            return Ok(existingAlcohol);
         }
         private bool AlcoholExists(int id)
         {
