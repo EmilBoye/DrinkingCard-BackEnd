@@ -17,7 +17,6 @@ namespace DrinkApi.Models.Entities
         public Role? Role { get; set; }
         public string? Username { get; set; }
         public Alcohol? Alcohol { get; set; }
-        public NonAlcohol? NonAlcohol { get; set; }
         public string? Passwordhash { get; set; }
     }
 }

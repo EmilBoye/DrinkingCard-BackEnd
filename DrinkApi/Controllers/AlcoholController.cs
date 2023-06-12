@@ -58,7 +58,6 @@ namespace DrinkApi.Controllers
             var alcoholPost = new Alcohol()
             {
                 Author = alcohol.Author,
-                AuthorId = alcohol.AuthorId,
                 Title = alcohol.Title,
                 Strength = alcohol.Strength,
                 Description = alcohol.Description,

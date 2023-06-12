@@ -1,34 +1,30 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\emil_\\OneDrive\\Dokumenter\\GitHub\\DrinkingCard-BackEnd\\DrinkApi\\DrinkApi.csproj": {}
+    "C:\\Users\\berk9\\Documents\\GitHub\\DrinkingCard-BackEnd\\DrinkApi\\DrinkApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\emil_\\OneDrive\\Dokumenter\\GitHub\\DrinkingCard-BackEnd\\DrinkApi\\DrinkApi.csproj": {
+    "C:\\Users\\berk9\\Documents\\GitHub\\DrinkingCard-BackEnd\\DrinkApi\\DrinkApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\emil_\\OneDrive\\Dokumenter\\GitHub\\DrinkingCard-BackEnd\\DrinkApi\\DrinkApi.csproj",
+        "projectUniqueName": "C:\\Users\\berk9\\Documents\\GitHub\\DrinkingCard-BackEnd\\DrinkApi\\DrinkApi.csproj",
         "projectName": "DrinkApi",
-        "projectPath": "C:\\Users\\emil_\\OneDrive\\Dokumenter\\GitHub\\DrinkingCard-BackEnd\\DrinkApi\\DrinkApi.csproj",
-        "packagesPath": "C:\\Users\\emil_\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\emil_\\OneDrive\\Dokumenter\\GitHub\\DrinkingCard-BackEnd\\DrinkApi\\obj\\",
+        "projectPath": "C:\\Users\\berk9\\Documents\\GitHub\\DrinkingCard-BackEnd\\DrinkApi\\DrinkApi.csproj",
+        "packagesPath": "C:\\Users\\berk9\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\berk9\\Documents\\GitHub\\DrinkingCard-BackEnd\\DrinkApi\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\emil_\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Users\\berk9\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {

@@ -46,7 +46,6 @@ namespace DrinkApi.Controllers
             var nonAlcoholPost = new NonAlcohol()
             {
                 Author = nonalcohol.Author,
-                AuthorId = nonalcohol.AuthorId,
                 Title = nonalcohol.Title,
                 Ingredients = nonalcohol.Ingredients,
                 FeaturedImageUrl = nonalcohol.FeaturedImageUrl,
