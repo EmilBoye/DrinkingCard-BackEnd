@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DrinkApi.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20230227132823_Drink")]
-    partial class Drink
+    [Migration("20230531101336_drinkingcard")]
+    partial class drinkingcard
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
