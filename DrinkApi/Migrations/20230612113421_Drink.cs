@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DrinkApi.Migrations
 {
-    public partial class drinkingcard : Migration
+    public partial class Drink : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,14 +13,10 @@ namespace DrinkApi.Migrations
                 name: "Alcohols",
                 columns: table => new
                 {
-
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Author = table.Column<string>(type: "nvarchar(max)", nullable: true),
-<<<<<<<< HEAD:DrinkApi/Migrations/20230612112053_Drink.cs
-                    AuthorId = table.Column<int>(type: "int", nullable: false),
-========
->>>>>>>> cf28d5542e91757a1b94bf55797be9d33995ce7b:DrinkApi/Migrations/20230531101336_drinkingcard.cs
+                    AuthorId = table.Column<int>(type: "int", nullable: true),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     FeaturedImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -43,10 +39,7 @@ namespace DrinkApi.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Author = table.Column<string>(type: "nvarchar(max)", nullable: true),
-<<<<<<<< HEAD:DrinkApi/Migrations/20230612112053_Drink.cs
-                    AuthorId = table.Column<int>(type: "int", nullable: false),
-========
->>>>>>>> cf28d5542e91757a1b94bf55797be9d33995ce7b:DrinkApi/Migrations/20230531101336_drinkingcard.cs
+                    AuthorId = table.Column<int>(type: "int", nullable: true),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     FeaturedImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -122,9 +115,34 @@ namespace DrinkApi.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Ratings",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<int>(type: "int", nullable: true),
+                    Comment = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PublishedComment = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Ratings", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Ratings_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "Id");
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Logins_UserId",
                 table: "Logins",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Ratings_UserId",
+                table: "Ratings",
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
@@ -145,6 +163,9 @@ namespace DrinkApi.Migrations
 
             migrationBuilder.DropTable(
                 name: "NonAlcohols");
+
+            migrationBuilder.DropTable(
+                name: "Ratings");
 
             migrationBuilder.DropTable(
                 name: "Users");

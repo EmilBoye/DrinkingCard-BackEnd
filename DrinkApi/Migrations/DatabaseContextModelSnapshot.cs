@@ -132,6 +132,30 @@ namespace DrinkApi.Migrations
                     b.ToTable("NonAlcohols");
                 });
 
+            modelBuilder.Entity("DrinkApi.Models.Entities.Rating", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Comment")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("PublishedComment")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Ratings");
+                });
+
             modelBuilder.Entity("DrinkApi.Models.Entities.Role", b =>
                 {
                     b.Property<int>("RoleId")
@@ -187,6 +211,15 @@ namespace DrinkApi.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("DrinkApi.Models.Entities.Rating", b =>
+                {
+                    b.HasOne("DrinkApi.Models.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
 
                     b.Navigation("User");
                 });
