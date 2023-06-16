@@ -8,8 +8,8 @@
     }
     public class Role
     {
-        public int roleId { get; set; }
-        public RoleType roleType { get; set; }
-        public int level { get; set; }
+        public int RoleId { get; set; }
+        public RoleType? RoleType { get; set; }
+        public int Level { get; set; }
     }
 }

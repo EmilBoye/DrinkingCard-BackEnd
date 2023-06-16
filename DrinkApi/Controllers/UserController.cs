@@ -42,19 +42,37 @@ namespace DrinkApi.Controllers
         // Create
         // POST api/User
         [HttpPost]
-        public async Task<ActionResult<User>> PostUser(User user)
+        public async Task<IActionResult> PostUser([FromBody] User user)
         {
-            _context.Users.Add(user);
+            var postUser = new User()
+            {
+                Id = user.Id,
+                RoleId = 2,
+                Role = user.Role,
+                Username = user.Username,
+                Alcohol = user.Alcohol,
+                NonAlcohol = user.NonAlcohol,
+                Passwordhash = user.Passwordhash,
+            };
+            postUser.Id = new int();
+            await _context.AddAsync(postUser);
             await _context.SaveChangesAsync();
-            return user;
+
+            return CreatedAtAction(nameof(GetUserById), new { id = postUser.Id }, postUser);
         }
+        //public async Task<ActionResult<User>> PostUser(User user)
+        //{
+        //    _context.Users.Add(user);
+        //    await _context.SaveChangesAsync();
+        //    return user;
+        //}
 
         // Update
         // PUT api/User/5
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateUser(int id, User user)
         {
-            if (id != user.UserId)
+            if (id != user.Id)
             {
                 return BadRequest();
             }
@@ -68,7 +86,7 @@ namespace DrinkApi.Controllers
             {
                 if (!UserExists(id))
                 {
-                    return NotFound();
+                    return NotFound("User was not found");
                 }
                 else
                 {
@@ -88,7 +106,7 @@ namespace DrinkApi.Controllers
 
             if (existingUser == null)
             {
-                return BadRequest("User not found");
+                return Ok("User was not found");
             }
             _context.Users.Remove(existingUser);
             await _context.SaveChangesAsync();
@@ -97,7 +115,7 @@ namespace DrinkApi.Controllers
 
         private bool UserExists(int id)
         {
-            return _context.Users.Any(x => x.UserId == id);
+            return _context.Users.Any(x => x.Id == id);
         }
         //public IActionResult Index()
         //{
