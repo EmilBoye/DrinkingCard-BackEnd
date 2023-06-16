@@ -48,6 +48,7 @@ namespace DrinkApi.Controllers
                 Author = nonalcohol.Author,
                 AuthorId = nonalcohol.AuthorId,
                 Title = nonalcohol.Title,
+                Description = nonalcohol.Description,
                 Ingredients = nonalcohol.Ingredients,
                 FeaturedImageUrl = nonalcohol.FeaturedImageUrl,
                 NonAlcoholType = nonalcohol.NonAlcoholType,
@@ -62,7 +63,7 @@ namespace DrinkApi.Controllers
             return CreatedAtAction(nameof(GetNonAlcoholByID), new { id = nonAlcoholPost.Id }, nonAlcoholPost);
         }
 
-        [HttpPut]
+        [HttpPut("{id}")]
         public async Task<IActionResult> UpdateNonAlcohol(int id, NonAlcohol nonAlcohol)
         {
             if (id != nonAlcohol.Id)
