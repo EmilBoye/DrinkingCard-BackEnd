@@ -29,6 +29,8 @@ namespace DrinkApi.Controllers
             var commentPost = new Rating()
             {
                 User = user.User,
+                DrinkId = user.DrinkId,
+                UserId= user.UserId,
                 Comment = user.Comment,
                 PublishedComment = user.PublishedComment
             };

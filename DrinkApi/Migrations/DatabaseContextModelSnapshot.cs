@@ -143,6 +143,9 @@ namespace DrinkApi.Migrations
                     b.Property<string>("Comment")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("DrinkId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime?>("PublishedComment")
                         .HasColumnType("datetime2");
 
