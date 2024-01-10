@@ -21,6 +21,8 @@ namespace DrinkApi.Controllers
         }
 
         // GET: api/User
+
+        // Henter alle brugere. Da den tager fra database tabellen Users
         [HttpGet]
         public async Task<ActionResult<IEnumerable<User>>> GetAllUsers()
         {
@@ -28,6 +30,8 @@ namespace DrinkApi.Controllers
         }
 
         // GET: api/User/5
+
+        // Her henter den en specifik bruger ved hjælp af et id tjek. Det henter den fra "FromRoute" og id parametret.
         [HttpGet("{id}")]
         public async Task<IActionResult> GetUserById([FromRoute] int id)
         {
@@ -41,23 +45,28 @@ namespace DrinkApi.Controllers
 
         // Create
         // POST api/User
+        // Opretter en bruger i databasen ved at modtage brugeroplysninger og gemme dem
         [HttpPost]
         public async Task<IActionResult> PostUser([FromBody] User user)
         {
+            // Opretter et nyt User-objekt med de nødvendige attributter
             var postUser = new User()
             {
                 Id = user.Id,
-                RoleId = 2,
-                Role = user.Role,
+                Role = RoleType.User,
                 Username = user.Username,
                 Alcohol = user.Alcohol,
                 NonAlcohol = user.NonAlcohol,
                 Passwordhash = user.Passwordhash,
             };
+            // Nulstiller Id for at sikre, at den bliver genereret automatisk af databasen
             postUser.Id = new int();
-            await _context.AddAsync(postUser);
+
+            // Tilføjer den oprettede bruger til konteksten og gemmer ændringerne i databasen
+            await _context.Users.AddAsync(postUser);
             await _context.SaveChangesAsync();
 
+            // CreatedAtAction er en status 201 metode.
             return CreatedAtAction(nameof(GetUserById), new { id = postUser.Id }, postUser);
         }
         //public async Task<ActionResult<User>> PostUser(User user)
@@ -67,11 +76,13 @@ namespace DrinkApi.Controllers
         //    return user;
         //}
 
-        // Update
         // PUT api/User/5
+        // Opdaterer en eksisterende bruger.
+
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateUser(int id, User user)
         {
+
             if (id != user.Id)
             {
                 return BadRequest();

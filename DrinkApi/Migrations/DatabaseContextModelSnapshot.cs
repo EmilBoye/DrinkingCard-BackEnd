@@ -195,7 +195,7 @@ namespace DrinkApi.Migrations
                     b.Property<string>("Passwordhash")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("RoleId")
+                    b.Property<int>("Role")
                         .HasColumnType("int");
 
                     b.Property<string>("Username")
@@ -206,8 +206,6 @@ namespace DrinkApi.Migrations
                     b.HasIndex("AlcoholId");
 
                     b.HasIndex("NonAlcoholId");
-
-                    b.HasIndex("RoleId");
 
                     b.ToTable("Users");
                 });
@@ -242,17 +240,9 @@ namespace DrinkApi.Migrations
                         .WithMany()
                         .HasForeignKey("NonAlcoholId");
 
-                    b.HasOne("DrinkApi.Models.Entities.Role", "Role")
-                        .WithMany()
-                        .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Alcohol");
 
                     b.Navigation("NonAlcohol");
-
-                    b.Navigation("Role");
                 });
 #pragma warning restore 612, 618
         }
