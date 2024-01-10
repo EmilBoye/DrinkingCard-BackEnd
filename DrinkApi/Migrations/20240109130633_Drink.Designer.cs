@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DrinkApi.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20230615095801_Drink")]
+    [Migration("20240109130633_Drink")]
     partial class Drink
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -197,7 +197,7 @@ namespace DrinkApi.Migrations
                     b.Property<string>("Passwordhash")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("RoleId")
+                    b.Property<int>("Role")
                         .HasColumnType("int");
 
                     b.Property<string>("Username")
@@ -208,8 +208,6 @@ namespace DrinkApi.Migrations
                     b.HasIndex("AlcoholId");
 
                     b.HasIndex("NonAlcoholId");
-
-                    b.HasIndex("RoleId");
 
                     b.ToTable("Users");
                 });
@@ -244,17 +242,9 @@ namespace DrinkApi.Migrations
                         .WithMany()
                         .HasForeignKey("NonAlcoholId");
 
-                    b.HasOne("DrinkApi.Models.Entities.Role", "Role")
-                        .WithMany()
-                        .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Alcohol");
 
                     b.Navigation("NonAlcohol");
-
-                    b.Navigation("Role");
                 });
 #pragma warning restore 612, 618
         }
