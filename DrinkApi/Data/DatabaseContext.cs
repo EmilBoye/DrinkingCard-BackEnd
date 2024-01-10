@@ -15,6 +15,11 @@ namespace DrinkApi.Data
         public DbSet<Role> Roles { get; set; }
         public DbSet<Login> Logins { get; set; }
         public DbSet<Rating> Ratings { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<User>().Property(u => u.Role).HasConversion<int>();
+        }
         #endregion
     }
 }
