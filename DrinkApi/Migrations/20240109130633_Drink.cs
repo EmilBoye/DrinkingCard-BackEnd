@@ -74,7 +74,7 @@ namespace DrinkApi.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    RoleId = table.Column<int>(type: "int", nullable: false),
+                    Role = table.Column<int>(type: "int", nullable: false),
                     Username = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     AlcoholId = table.Column<int>(type: "int", nullable: true),
                     NonAlcoholId = table.Column<int>(type: "int", nullable: true),
@@ -93,12 +93,6 @@ namespace DrinkApi.Migrations
                         column: x => x.NonAlcoholId,
                         principalTable: "NonAlcohols",
                         principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_Users_Roles_RoleId",
-                        column: x => x.RoleId,
-                        principalTable: "Roles",
-                        principalColumn: "RoleId",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -161,11 +155,6 @@ namespace DrinkApi.Migrations
                 name: "IX_Users_NonAlcoholId",
                 table: "Users",
                 column: "NonAlcoholId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Users_RoleId",
-                table: "Users",
-                column: "RoleId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -177,6 +166,9 @@ namespace DrinkApi.Migrations
                 name: "Ratings");
 
             migrationBuilder.DropTable(
+                name: "Roles");
+
+            migrationBuilder.DropTable(
                 name: "Users");
 
             migrationBuilder.DropTable(
@@ -184,9 +176,6 @@ namespace DrinkApi.Migrations
 
             migrationBuilder.DropTable(
                 name: "NonAlcohols");
-
-            migrationBuilder.DropTable(
-                name: "Roles");
         }
     }
 }
